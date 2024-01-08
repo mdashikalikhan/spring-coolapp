@@ -1,0 +1,16 @@
+package com.app.springcoolapp.service;
+
+
+
+import com.app.springcoolapp.entity.Products;
+
+import java.util.List;
+
+public interface ProductService {
+    public List<Products> findAll();
+
+    public Products findById(Long productId);
+
+    public Products save(Products products);
+
+}

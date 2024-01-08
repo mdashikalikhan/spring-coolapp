@@ -1,0 +1,36 @@
+package com.app.springcoolapp.res;
+
+import com.app.springcoolapp.entity.Products;
+import com.app.springcoolapp.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
+public class ProductsController {
+
+    ProductService productService;
+
+    @Autowired
+    public ProductsController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping("/products")
+    public List<Products> getAllProducts(){
+        return productService.findAll();
+    }
+
+    @GetMapping("/products/{id}")
+    public Products getProductById(@PathVariable Long id){
+        return productService.findById(id);
+    }
+
+    @PostMapping("/products")
+    public Products save(@RequestBody Products products){
+        return productService.save(products);
+    }
+
+}

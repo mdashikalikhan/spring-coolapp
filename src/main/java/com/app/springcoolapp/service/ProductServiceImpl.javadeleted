@@ -1,0 +1,44 @@
+package com.app.springcoolapp.service;
+
+import com.app.springcoolapp.dao.ProductDao;
+import com.app.springcoolapp.entity.Products;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ProductServiceImpl implements ProductService{
+
+    ProductDao dao;
+
+    @Autowired
+    public ProductServiceImpl(ProductDao dao) {
+        this.dao = dao;
+    }
+
+    @Override
+    public List<Products> findAll() {
+        return dao.findAll();
+    }
+
+    @Override
+    public Products findById(Long productId) {
+        Optional<Products> products =  dao.findById(productId);
+        if(products.isPresent()){
+            return products.get();
+        } else{
+            throw new RuntimeException("Product not found for id: " + productId);
+        }
+    }
+
+    @Override
+    @Transactional
+    public Products save(Products products) {
+        products.setId(0l);
+        Products newProduct = dao.save(products);
+        return newProduct;
+    }
+}
