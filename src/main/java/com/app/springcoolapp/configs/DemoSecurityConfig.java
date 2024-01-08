@@ -42,7 +42,7 @@ public class DemoSecurityConfig {
         return new JdbcUserDetailsManager(dataSource);
     }*/
 
-    @Bean
+    /*@Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager userDetailManager = new JdbcUserDetailsManager(dataSource);
 
@@ -52,16 +52,21 @@ public class DemoSecurityConfig {
 
         System.out.println(userDetailManager);
         return userDetailManager;
-    }
+    }*/
 
-    /*@Bean
+    @Bean
     public DaoAuthenticationProvider authenticationProvider(UserService userService){
 
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
-        auth.setPasswordEncoder(new BCryptPasswordEncoder());
+        auth.setPasswordEncoder(encoder());
         return auth;
-    }*/
+    }
+
+    @Bean
+    public BCryptPasswordEncoder encoder(){
+        return new BCryptPasswordEncoder();
+    }
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer->
                 configurer.requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")

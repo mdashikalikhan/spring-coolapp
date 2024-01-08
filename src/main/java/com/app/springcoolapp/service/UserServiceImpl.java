@@ -50,8 +50,10 @@ public class UserServiceImpl implements UserService{
         List<String> roles = new ArrayList<>();
         userRoles.stream().forEach(r->roles.add(r.getRoleId()));
 
+        Collection<? extends GrantedAuthority> authorities = mapRoleToAuthorities(roles);
+        //authorities.stream().forEach(c-> System.out.println(c.toString()));
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword()
-                ,mapRoleToAuthorities(roles));
+                , authorities);
     }
 
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(List<String> roles){
