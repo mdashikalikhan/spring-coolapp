@@ -54,14 +54,14 @@ public class DemoSecurityConfig {
         return userDetailManager;
     }*/
 
-    /*@Bean
+    @Bean
     public DaoAuthenticationProvider authenticationProvider(UserService userService){
 
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(encoder());
         return auth;
-    }*/
+    }
 
     @Bean
     public BCryptPasswordEncoder encoder(){
