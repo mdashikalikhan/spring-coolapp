@@ -54,14 +54,14 @@ public class DemoSecurityConfig {
         return userDetailManager;
     }*/
 
-    @Bean
+    /*@Bean
     public DaoAuthenticationProvider authenticationProvider(UserService userService){
 
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(encoder());
         return auth;
-    }
+    }*/
 
     @Bean
     public BCryptPasswordEncoder encoder(){
@@ -69,12 +69,19 @@ public class DemoSecurityConfig {
     }
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer->
-                configurer.requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")
+                configurer
+
+                        .requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET,"/api/employees/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST,"/api/employees").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT,"/api/employees").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasRole("ADMIN"));
+                        .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasRole("ADMIN")
+
+
+                        );
+
         httpSecurity.httpBasic(Customizer.withDefaults());
+
         return httpSecurity.build();
     }
 }
