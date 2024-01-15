@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MVC Welcome Page</title>
+    <title th:text="${@UILabels.LABEL_WELCOME}"></title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
 </head>
 <body>
-    <p th:text="'Server Time:' + ${serverTime}" />
+    <p th:if="${serverTime!=null}" th:text="'Server Time:' + ${serverTime}" class="funny"/>
+<p th:if="${param.studentName!=null && !#strings.isEmpty(param.studentName)}">
+    Student Name: <b><span th:text="${param.studentName}"/></b><br/><br/>
+    Message : <b><span th:text="${message}"/></b>
+</p>
 </body>
 </html>

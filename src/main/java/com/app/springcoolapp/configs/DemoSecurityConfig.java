@@ -70,7 +70,7 @@ public class DemoSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer->
                 configurer
-
+                        .requestMatchers("/static/**", "/welcome", "/about").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET,"/api/employees/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST,"/api/employees").hasRole("MANAGER")
@@ -79,6 +79,7 @@ public class DemoSecurityConfig {
 
 
                         );
+        //httpSecurity.formLogin()
 
         httpSecurity.httpBasic(Customizer.withDefaults());
 
