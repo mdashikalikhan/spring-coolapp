@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${@UILabels.STUDENT_REGISTATION_COMPLETED}"></title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+</head>
+<body>
+
+<h3 th:text="${@UILabels.STUDENT_REGISTATION_COMPLETED}"></h3>
+<br/>
+Name: <span th:text="${student.firstName + ' ' + student.lastName}"/>
+<br/><br/>
+District: <span th:text="${student.district}"/>
+</form>
+
+</body>
+</html>

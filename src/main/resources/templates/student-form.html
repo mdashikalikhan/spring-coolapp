@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${@UILabels.STUDENT_FORM_TITLE}"></title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+</head>
+<body>
+
+    <h3 th:text="${@UILabels.STUDENT_FORM_TITLE}"></h3>
+
+    <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+        First Name: <input type="text" th:field="*{firstName}"/>
+        <br/><br/>
+        Last Name: <input type="text" th:field="*{lastName}"/>
+        <br/><br/>
+        District:
+        <select th:field="*{district}">
+            <option th:each="district : ${districts}" th:value="${district}" th:text="${district}"/>
+        </select>
+        <br/><br/>
+        <input type="submit"/>
+    </form>
+
+</body>
+</html>
