@@ -12,6 +12,13 @@
 Name: <span th:text="${student.firstName + ' ' + student.lastName}"/>
 <br/><br/>
 District: <span th:text="${student.district}"/>
+<br/><br/>
+Student's favourite language: <span th:text="${student.favouriteLanguage}"/>
+<br/><br/>
+Student's favourite systems:
+<ul>
+    <li th:each="system : ${student.favouriteSystems}" th:text="${system}"/>
+</ul>
 </form>
 
 </body>
