@@ -17,11 +17,12 @@ public class StudentForm {
     @NotNull(message = "First Name can't be null")
     @NotEmpty(message = "Can't be empty")
     @Size(min = 2,message = "At least two characters are required.")
-    //@Pattern(regexp = "^[A-Z]+(A-Z|a-z)*+[\\\\s.]*",message = "Name is not correct.")
+    @Pattern(regexp = "^[A-Z][A-Za-z\\. ]*[A-Za-z]$",message = "Name is not correct.")
     private String firstName;
 
     @NotNull(message = "Last Name can't be null")
     @NotEmpty(message = "Can't be empty")
+    @Size(min = 2,message = "At least two characters are required.")
     private String lastName;
 
     @NotNull(message = "District can't be null")
@@ -35,6 +36,11 @@ public class StudentForm {
     @NotNull(message = "Operating System can't be empty")
     @Size(min = 1,message = "At least one operating system must be selected")
     private List<String> favouriteSystems;
+
+    @Min(value = 1,message = "levels must be greater or equal to one")
+    @Max(value = 12,message = "levels must be less or equal to twelve")
+    @NotNull(message = "Levels is required")
+    private Integer levels;
 
     private List<String> districts;
 

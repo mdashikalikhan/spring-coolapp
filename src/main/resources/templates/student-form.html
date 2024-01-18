@@ -30,6 +30,9 @@
         <input type="checkbox" th:each="system : *{operatingSystems}" th:label="${system}" th:text="${system}" th:value="${system}" th:field="*{favouriteSystems}"/>
         <span th:if="${#fields.hasErrors('favouriteSystems')}" th:errors="*{favouriteSystems}" class="error"/>
         <br/><br/>
+        Level [1 - 12]: <input type="text" th:field="*{levels}"/>
+        <span th:if="${#fields.hasErrors('levels')}" th:errors="*{levels}" class="error"/>
+        <br/><br/>
         <input type="submit"/>
     </form>
 

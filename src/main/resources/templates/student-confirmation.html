@@ -19,6 +19,8 @@ Student's favourite systems:
 <ul>
     <li th:each="system : ${student.favouriteSystems}" th:text="${system}"/>
 </ul>
+<br/><br/>
+Student's level: <span th:text="${student.levels}"/>
 </form>
 
 </body>
