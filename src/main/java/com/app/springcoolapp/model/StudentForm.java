@@ -2,6 +2,7 @@ package com.app.springcoolapp.model;
 
 
 
+import com.app.springcoolapp.validator.StudentCode;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,11 @@ public class StudentForm {
     @NotNull(message = "District can't be null")
     @NotEmpty(message = "Can't be empty")
     private String district;
+
+    @NotNull(message = "Student Code can't be empty")
+    @NotEmpty(message = "Can't be empty")
+    @StudentCode(value = "STL-", message = "Must be start with STL-")
+    private String studentCode;
 
     @NotNull(message = "Favourite Language can't be null")
     @NotEmpty(message = "Can't be empty")

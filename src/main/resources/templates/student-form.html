@@ -22,6 +22,10 @@
         </select>
         <span th:if="${#fields.hasErrors('district')}" th:errors="*{district}" class="error"/>
         <br/><br/>
+        Student Code:
+        <input type="text" th:field="*{studentCode}"/>
+        <span th:if="${#fields.hasErrors('studentCode')}" th:errors="*{studentCode}" class="error"/>
+        <br/><br/>
         Favourite Programming Language:
         <input type="radio" th:each="language : *{languages}" th:label="${language}" th:text="${language}" th:value="${language}" th:field="*{favouriteLanguage}"/>
         <span th:if="${#fields.hasErrors('favouriteLanguage')}" th:errors="*{favouriteLanguage}" class="error"/>
