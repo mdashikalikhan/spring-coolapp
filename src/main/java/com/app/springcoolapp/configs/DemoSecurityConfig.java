@@ -1,24 +1,24 @@
 package com.app.springcoolapp.configs;
 
+import com.app.springcoolapp.res.CustomAuthenticationSuccessHandler;
 import com.app.springcoolapp.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Configuration
 public class DemoSecurityConfig {
@@ -48,8 +48,7 @@ public class DemoSecurityConfig {
 
         userDetailManager.setUsersByUsernameQuery("select * from members where user_id=?");
 
-        userDetailManager.setAuthoritiesByUsernameQuery("select * from roles where role_id=?");
-
+        userDetailManager.setAuthoritiesByUsernameQuery("select * from roles where user_id=?");
         System.out.println(userDetailManager);
         return userDetailManager;
     }*/
@@ -67,7 +66,9 @@ public class DemoSecurityConfig {
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+
+    //Before Web requests
+    /*public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer->
                 configurer
                         .requestMatchers("/static/**", "/welcome", "/about").permitAll()
@@ -84,5 +85,31 @@ public class DemoSecurityConfig {
         httpSecurity.httpBasic(Customizer.withDefaults());
 
         return httpSecurity.build();
+    }*/
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity,
+                                           AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception{
+        httpSecurity.authorizeHttpRequests(configurer -> configurer
+                                .requestMatchers("/css/**","/sendtopc1", "/register/**").permitAll()
+                                .requestMatchers("/leaders").hasRole("MANAGER")
+                                .anyRequest().authenticated()
+                        )
+                .formLogin(form->form
+                        .loginPage("/login")
+
+                        .loginProcessingUrl("/authenticationProcess")
+                        .successHandler(authenticationSuccessHandler)
+                        .permitAll()
+                        )
+                .logout(logout->logout.permitAll())
+
+                .exceptionHandling(configurer-> configurer.accessDeniedPage("/access-denied")
+                )
+
+                ;
+
+        return httpSecurity.build();
+
     }
 }

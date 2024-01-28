@@ -5,4 +5,6 @@ import com.app.springcoolapp.entity.CustomUser;
 
 public interface UserDao {
     CustomUser findByUserName(String userName);
+
+    void save(CustomUser user);
 }

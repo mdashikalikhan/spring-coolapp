@@ -18,7 +18,7 @@ public class StudentForm {
     @NotNull(message = "First Name can't be null")
     @NotEmpty(message = "Can't be empty")
     @Size(min = 2,message = "At least two characters are required.")
-    @Pattern(regexp = "^[A-Z][A-Za-z\\. ]*[A-Za-z]$",message = "Name is not correct.")
+    @Pattern(regexp = "^[A-Z][A-Za-z\\. ]*[A-Za-z]$",message = "First Name is not valid.")
     private String firstName;
 
     @NotNull(message = "Last Name can't be null")

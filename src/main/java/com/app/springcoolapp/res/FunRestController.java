@@ -13,10 +13,10 @@ public class FunRestController {
     @Value("${api.postTransaction}")
     private String POST_TRANSACTION_API;
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String welcomeMessae(){
         return "Welcome to Cool Spring Boot Application";
-    }
+    }*/
 
     @GetMapping("/status1")
     public String getStatus(){

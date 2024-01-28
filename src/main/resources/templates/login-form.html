@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${@UILabels.LABEL_LOGIN}"></title>
+
+    <style>
+        .failed{
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+</head>
+<body>
+<h3 th:text="${@UILabels.LABEL_LOGIN}"/>
+<form action="#" th:action="@{/authenticationProcess}" method="post" >
+    <div th:if="${param.error}" >
+        <b><i class="error">Invalid username or password.</i></b>
+    </div>
+    <p>User Name: <input type="text" name="username" />
+        </p>
+    <p>User Password: <input type="password" name="password"/>
+        </p>
+    <input type="submit" th:value="Login"/>
+</form>
+</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${@UILabels.LABEL_LEADERS_HOME_PAGE}"></title>
+
+</head>
+<body>
+<h2 th:text="${@UILabels.LABEL_LEADERS_HOME_PAGE}"/>
+<hr/>
+<p>This is confidential meeting for technical leads. </p>
+<p>Don't public this to regular staffs..</p>
+<hr/>
+<a th:href="@{/}">Home Page</a>
+</body>
+</html>

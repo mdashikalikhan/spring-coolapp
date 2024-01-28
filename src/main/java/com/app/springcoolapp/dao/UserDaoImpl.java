@@ -3,6 +3,7 @@ package com.app.springcoolapp.dao;
 import com.app.springcoolapp.entity.CustomUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
@@ -27,5 +28,11 @@ public class UserDaoImpl implements UserDao{
             e.printStackTrace();
         }
         return user;
+    }
+
+    @Override
+    @Transactional
+    public void save(CustomUser user) {
+        entityManager.merge(user);
     }
 }
