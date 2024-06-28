@@ -14,7 +14,8 @@ public class KafkaController {
 
     @GetMapping("/sendtopc1")
     public String sendMessageToKafkaTopic() {
-        kafkaProducerService.sendMessage("my-topic", "HI.....");
+        kafkaProducerService.sendMessage("OTP", "01714113779,123456");
+        kafkaProducerService.sendMessage("input-topic", "{name:Md. Ashik Ali Khan, name: Sabbir Rafit}");
         return "Message sent to Kafka topic successfully!";
     }
 }
