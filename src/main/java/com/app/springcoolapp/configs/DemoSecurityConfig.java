@@ -2,8 +2,10 @@ package com.app.springcoolapp.configs;
 
 import com.app.springcoolapp.res.CustomAuthenticationSuccessHandler;
 import com.app.springcoolapp.service.UserService;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -102,7 +104,9 @@ public class DemoSecurityConfig {
                         .successHandler(authenticationSuccessHandler)
                         .permitAll()
                         )
-                .logout(logout->logout.permitAll())
+                .logout(logout->logout.permitAll()
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true))
 
                 .exceptionHandling(configurer-> configurer.accessDeniedPage("/access-denied")
                 )
@@ -112,4 +116,6 @@ public class DemoSecurityConfig {
         return httpSecurity.build();
 
     }
+
+
 }

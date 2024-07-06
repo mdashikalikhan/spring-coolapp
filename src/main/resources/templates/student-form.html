@@ -8,33 +8,35 @@
 <body>
 
     <h3 th:text="${@UILabels.STUDENT_FORM_TITLE}"></h3>
-
+    <a href="#?lang=en"><span th:text="#{lang.english}"/></a>
+    <a href="#?lang=bn"><span th:text="#{lang.bangla}"/></a>
+    <br/>
     <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
-        First Name: <input type="text" th:field="*{firstName}"/>
+        <span th:text="#{first.name}"/>: <input type="text" th:field="*{firstName}"/>
         <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"/>
         <br/><br/>
-        Last Name: <input type="text" th:field="*{lastName}"/>
+        <span th:text="#{last.name}"/>: <input type="text" th:field="*{lastName}"/>
         <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"/>
         <br/><br/>
-        District:
+        <span th:text="#{district}"/>:
         <select th:field="*{district}">
             <option th:each="d : *{districts}" th:value="${d}"  th:text="${d}"/>
         </select>
         <span th:if="${#fields.hasErrors('district')}" th:errors="*{district}" class="error"/>
         <br/><br/>
-        Student Code:
+        <span th:text="#{student.code}"/>:
         <input type="text" th:field="*{studentCode}"/>
         <span th:if="${#fields.hasErrors('studentCode')}" th:errors="*{studentCode}" class="error"/>
         <br/><br/>
-        Favourite Programming Language:
+        <span th:text="#{favourite.prg.lang}"/>:
         <input type="radio" th:each="language : *{languages}" th:label="${language}" th:text="${language}" th:value="${language}" th:field="*{favouriteLanguage}"/>
         <span th:if="${#fields.hasErrors('favouriteLanguage')}" th:errors="*{favouriteLanguage}" class="error"/>
         <br/><br/>
-        Favourite Operating Systems:
+        <span th:text="#{favourite.operating.system}"/>:
         <input type="checkbox" th:each="system : *{operatingSystems}" th:label="${system}" th:text="${system}" th:value="${system}" th:field="*{favouriteSystems}"/>
         <span th:if="${#fields.hasErrors('favouriteSystems')}" th:errors="*{favouriteSystems}" class="error"/>
         <br/><br/>
-        Level [1 - 12]: <input type="text" th:field="*{levels}"/>
+        <span th:text="#{level.1_12}"/>: <input type="text" th:field="*{levels}"/>
         <span th:if="${#fields.hasErrors('levels')}" th:errors="*{levels}" class="error"/>
         <br/><br/>
         <input type="submit"/>
