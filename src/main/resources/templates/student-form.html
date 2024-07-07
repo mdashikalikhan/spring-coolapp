@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <title th:text="${@UILabels.STUDENT_FORM_TITLE}"></title>
     <link rel="stylesheet" th:href="@{/css/demo.css}" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 </head>
 <body>
 
     <h3 th:text="${@UILabels.STUDENT_FORM_TITLE}"></h3>
-    <a href="#?lang=en"><span th:text="#{lang.english}"/></a>
-    <a href="#?lang=bn"><span th:text="#{lang.bangla}"/></a>
+
+
+    <br/>
+    <div class="card-body">
+        Switch Language.
+        <a class="btn btn-primary" th:href="@{/studentRegistration(lang=en)}" role="button">English</a>
+        <a class="btn btn-primary" th:href="@{/studentRegistration(lang=bn)}" role="button">Bangla</a>
+    </div>
     <br/>
     <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
         <span th:text="#{first.name}"/>: <input type="text" th:field="*{firstName}"/>

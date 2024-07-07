@@ -18,7 +18,7 @@ public class DemoLocaleConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:message/messages");
+        messageSource.setBasenames("classpath:message/messages","classpath:message/signin");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }

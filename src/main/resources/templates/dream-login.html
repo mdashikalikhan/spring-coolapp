@@ -11,9 +11,16 @@
     <body>
         <div class="container">
             <div id="loginbox" style="margin-top: 50px;" class="col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+                <div class="card-body">
+                    Switch Language.
+                    <a class="btn btn-primary" th:href="@{/(lang=en)}" role="button">English</a>
+                    <a class="btn btn-primary" th:href="@{/(lang=bn)}" role="button">Bangla</a>
+                </div>
+                <br/>
                 <div class="card border-info">
+
                     <div class="card-header bg-info">
-                        Sign In
+                        <span th:text="#{label.signin}"/>
                     </div>
 
                     <div class="card-body">
