@@ -12,11 +12,7 @@
 
 
     <br/>
-    <div class="card-body">
-        Switch Language.
-        <a class="btn btn-primary" th:href="@{/studentRegistration(lang=en)}" role="button">English</a>
-        <a class="btn btn-primary" th:href="@{/studentRegistration(lang=bn)}" role="button">Bangla</a>
-    </div>
+
     <br/>
     <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
         <span th:text="#{first.name}"/>: <input type="text" th:field="*{firstName}"/>

@@ -13,8 +13,12 @@
             <div id="loginbox" style="margin-top: 50px;" class="col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
                 <div class="card-body">
                     Switch Language.
-                    <a class="btn btn-primary" th:href="@{/(lang=en)}" role="button">English</a>
-                    <a class="btn btn-primary" th:href="@{/(lang=bn)}" role="button">Bangla</a>
+                    <a class="btn btn-primary" th:href="@{/register/international(lang=en)}" role="button">
+                        <span th:text="#{lang.english}"/>
+                    </a>
+                    <a class="btn btn-primary" th:href="@{/register/international(lang=bn)}" role="button">
+                        <span th:text="#{lang.bangla}"/>
+                    </a>
                 </div>
                 <br/>
                 <div class="card border-info">
@@ -66,7 +70,9 @@
                                 <!-- Login/Submit Button -->
                                 <div style="margin-top: 10px;" class="form-group">
                                     <div class="col-sm-6 controls">
-                                        <button type="submit" class="btn btn-success">Login</button>
+                                        <button type="submit" class="btn btn-success">
+                                            <span th:text="#{label.login}"/>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -78,7 +84,7 @@
                                class="btn btn-primary mt-3"
                                role="button"
                                aria-pressed="true">
-                                Register New User
+                                <span th:text="#{label.register}"/>
                             </a>
                         </div>
                     </div>

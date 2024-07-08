@@ -4,6 +4,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="${@UILabels.LABEL_HOME}"></title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 
 </head>
 <body>
@@ -17,6 +18,12 @@ Role(s): <span sec:authentication="principal.authorities" />
     <p><a th:href="@{/leaders}"/>Tech leads Meeting (Only for technical managers)</p>
 </div>
 
+    <div>
+        <a class="btn btn-primary" th:href="@{/studentRegistration}" role="button">
+            <span th:text="#{welcome.registration}"/>
+        </a>
+    </div>
+<br/>
 
 <form action="#" th:action="@{/logout}" method="post">
     <input type="submit" value="Logout"/>

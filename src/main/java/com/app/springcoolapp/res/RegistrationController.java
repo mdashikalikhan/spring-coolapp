@@ -3,8 +3,12 @@ package com.app.springcoolapp.res;
 import com.app.springcoolapp.entity.CustomUser;
 import com.app.springcoolapp.model.RegistrationForm;
 import com.app.springcoolapp.service.UserService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -13,10 +17,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/register")
+@Slf4j
 public class RegistrationController {
     private  UserService userService;
 
@@ -67,4 +73,18 @@ public class RegistrationController {
         session.setAttribute("user", registrationForm);
         return "registration-confirmation";
     }
+
+    @GetMapping("/international") public void international(HttpServletRequest request,
+                              HttpServletResponse response) throws ServletException, IOException {
+        String lang = request.getParameter("lang");
+        if(lang==null){
+            log.info("language is null");
+        } else if(lang.equals("en")){
+            log.info("language is english");
+        } else if(lang.equals("bn")){
+            log.info("language is bangla");
+        }
+        request.getRequestDispatcher("/login").forward(request, response);
+    }
+
 }
