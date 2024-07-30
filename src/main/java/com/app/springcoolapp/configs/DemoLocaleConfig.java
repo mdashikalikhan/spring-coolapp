@@ -1,5 +1,6 @@
 package com.app.springcoolapp.configs;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +12,17 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 @Configuration
 public class DemoLocaleConfig implements WebMvcConfigurer {
+
+    @Value("${messages.files}") private String[] messageFiles;
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:message/messages","classpath:message/signin",
-                "classpath:message/welcome");
+        messageSource.setBasenames(messageFiles);
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }

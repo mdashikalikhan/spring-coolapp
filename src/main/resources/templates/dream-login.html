@@ -19,6 +19,8 @@
                     <a class="btn btn-primary" th:href="@{/register/international(lang=bn)}" role="button">
                         <span th:text="#{lang.bangla}"/>
                     </a>
+                    <div th:if="${#locale.toString()=='en' || #locale.toString()=='en_US'}">ENGLISH</div>
+                    <div th:if="${#locale.toString()}=='bn'">BANGLA</div>
                 </div>
                 <br/>
                 <div class="card border-info">
