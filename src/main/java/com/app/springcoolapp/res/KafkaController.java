@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class KafkaController {
-    @Autowired
+    /*@Autowired
     private KafkaProducerService kafkaProducerService;
 
     @GetMapping("/sendtopc1")
@@ -17,5 +17,5 @@ public class KafkaController {
         kafkaProducerService.sendMessage("OTP", "01714113779,123456");
         kafkaProducerService.sendMessage("input-topic", "{name:Md. Ashik Ali Khan, name: Sabbir Rafit}");
         return "Message sent to Kafka topic successfully!";
-    }
+    }*/
 }
