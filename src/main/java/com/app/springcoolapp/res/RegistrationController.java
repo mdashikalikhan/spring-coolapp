@@ -34,11 +34,11 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @InitBinder
+    /*@InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-    }
+    }*/
 
     @GetMapping("/showRegistrationForm")
     public String showMyLoginPage(Model theModel) {

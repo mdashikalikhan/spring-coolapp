@@ -27,11 +27,7 @@ public class StudentController {
     @Value("${systems}")
     private List<String> operatingSystems;
 
-    @InitBinder
-    public void initBinder(WebDataBinder webDataBinder){
-        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-        webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-    }
+
 
 
     @GetMapping("/studentRegistration")

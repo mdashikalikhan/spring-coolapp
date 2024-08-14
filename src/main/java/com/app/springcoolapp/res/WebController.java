@@ -13,4 +13,8 @@ public class WebController {
         model.addAttribute("serverTime", new Date());
         return MVC_WELCOME_PAGE;
     }
+
+    @GetMapping("/change_password") public String changePassword(){
+        return "change-password";
+    }
 }
