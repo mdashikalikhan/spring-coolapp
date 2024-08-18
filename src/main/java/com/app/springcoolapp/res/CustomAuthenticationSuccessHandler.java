@@ -36,7 +36,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         System.out.println("username = " + username);
         CustomUser user = userService.findByUserName(username);
         HttpSession session = request.getSession(false);
-        session.setAttribute("pwdExpires", 0);
+        session.setAttribute("pwdExpires", 1);
         session.setAttribute("user", user);
         response.sendRedirect(request.getContextPath()+"/");
 

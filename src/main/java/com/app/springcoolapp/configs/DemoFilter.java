@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,18 +12,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.*;
 
 @Component
 public class DemoFilter extends HttpFilter {
 
 
-
+    @Value("${url.allowed}") List<String> allowedURLs;
 
     @Override
     @Order(1)
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("Filter....");
-
+        /*System.out.println("Filter....");
+        System.out.println(allowedURLs);*/
         boolean isPwdExpired = false;
 
         if(request.getSession(false).getAttribute("pwdExpires")!=null){
@@ -59,8 +61,8 @@ public class DemoFilter extends HttpFilter {
             throws IOException, ServletException {
         String url = httpRequest.getRequestURL().toString();
 
-        if (url.endsWith(".css") || url.endsWith(".png") || url.endsWith(".js")
-                || url.endsWith("/change_password")) {
+        Optional<String> strMatch = allowedURLs.stream().filter(s -> url.endsWith(s)).findFirst();
+        if (strMatch.isPresent()) {
             return true;
         }
 
