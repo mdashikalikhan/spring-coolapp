@@ -1,6 +1,9 @@
 package com.app.springcoolapp;
 
+import com.app.springcoolapp.dao.InstructorDao;
 import com.app.springcoolapp.dao.StudentDao;
+import com.app.springcoolapp.entity.Instructor;
+import com.app.springcoolapp.entity.InstructorDetail;
 import com.app.springcoolapp.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +27,15 @@ public class SpringCoolappApplication {
 			System.out.println("Command Line runner implemented.");
 		};
 	}
+
+	/*@Bean public CommandLineRunner createInstructor(InstructorDao instructorDao){
+		return runner->{
+			Instructor instructor = new Instructor("Md. Ashik", "Ali", "khan.ashik@gmail.com");
+			instructor.setInstructorDetail(new InstructorDetail("www.youtube.com", "Reading"));
+			instructorDao.save(instructor);
+			System.out.println("Success...");
+		};
+	}*/
 
 	@Bean
 	public CommandLineRunner commandLineStudentRunner(StudentDao dao){

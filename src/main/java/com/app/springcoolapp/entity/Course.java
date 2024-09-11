@@ -9,15 +9,23 @@ import lombok.*;
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "course_name")
+    @Column(name = "title")
     @NonNull
-    private String courseName;
+    private String title;
+
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,
+                CascadeType.REFRESH})
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
+
+    public String toString() {
+        return "Course[id: " + id + ", " +  "title: " + title +"]";
+    }
 
 }
