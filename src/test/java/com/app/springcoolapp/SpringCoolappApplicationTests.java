@@ -6,6 +6,7 @@ import com.app.springcoolapp.dao.InstructorDetailDao;
 import com.app.springcoolapp.entity.Course;
 import com.app.springcoolapp.entity.Instructor;
 import com.app.springcoolapp.entity.InstructorDetail;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -153,6 +154,70 @@ class SpringCoolappApplicationTests {
 		courseDao.save(course3);
 	}
 
+	@Test
+	public void updateInstructor(){
+		Optional<Instructor> instructorDaoById = instructorDao.findById(13l);
 
+		if(instructorDaoById.isEmpty()){
+			return;
+		}
+
+		Instructor instructor = instructorDaoById.get();
+
+		instructor.setLastName("TESTER");
+
+		instructorDao.save(instructor);
+	}
+
+	@Test
+	public void updateCourse(){
+		Optional<Instructor> instructorDaoById = instructorDao.findById(13l);
+
+		if(instructorDaoById.isEmpty()){
+			return;
+		}
+
+		Optional<Course> courseDaoById = courseDao.findById(14l);
+
+		if(courseDaoById.isEmpty()){
+			return;
+		}
+
+		Course course = courseDaoById.get();
+
+		course.setTitle("Funny");
+		course.setInstructor(instructorDao.findById(6l).get());
+		courseDao.save(course);
+
+	}
+
+	@Test
+	@Transactional
+	void deleteInstructorById(){
+		Optional<Instructor> instructorDaoById = instructorDao.findById(2l);
+
+		if(instructorDaoById.isEmpty()){
+			return;
+		}
+
+		Instructor instructor = instructorDaoById.get();
+
+		List<Course> courses = instructor.getCourses();
+
+		//System.out.println(instructor);
+
+		for(Course course : courses){
+			course.setInstructor(null);
+
+		}
+		System.out.println(courses);
+		courseDao.saveAll(courses);
+
+		instructorDao.delete(instructor);
+
+
+
+
+	}
 
 }

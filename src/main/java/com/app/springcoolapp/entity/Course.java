@@ -20,7 +20,7 @@ public class Course {
     private String title;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,
-                CascadeType.REFRESH})
+                CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
